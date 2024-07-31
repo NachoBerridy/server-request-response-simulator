@@ -7,7 +7,7 @@ def prueba_poker(secuencia, num_digitos=5, alpha=0.05):
     Realiza la prueba de póker para una secuencia de números.
 
     :param secuencia: Lista de números entre 0 y 1.
-    :param num_digitos: Número de dígitos a considerar para cada número (default 4).
+    :param num_digitos: Número de dígitos a considerar para cada número (default 5).
     :param alpha: Nivel de significancia para la prueba (default 0.05).
     :return: True si la prueba pasa, False en caso contrario.
     """

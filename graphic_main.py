@@ -8,7 +8,6 @@ from functions.parameters_selector import find_good_parameters
 from functions.congruential_generator import GeneradorCongruencialMultiplicativo
 from functions.congruential_mix_generator import GeneradorCongruencialMixto
 from functions.graficador import graficador
-from functions.graphic_simulator import QueueSystem, Client
 
 class ColaApp:
     def __init__(self, root):
@@ -90,24 +89,6 @@ class ColaApp:
         print("\nResumen de los datos de los clientes:")
         print(resultado_df)
 
-        # Lista para almacenar las instancias de Client
-        clientss = []
-
-        # Iterar sobre las filas del DataFrame
-        for index, row in resultado_df.iterrows():
-            client_id = int(row["Cliente"].split()[1]) 
-            arrival_time = row["Tiempo de llegada"]
-            # Extraer el número del servidor
-            server = int(row["Servidor"].split()[1]) + 1
-            service_start_time = row["Tiempo de inicio"]
-            departure_time = row["Tiempo de salida"]
-
-            # Crear una instancia de Client
-            client = Client(client_id, arrival_time, server, service_start_time, departure_time)
-            # Añadir a la lista de clientes
-            clientss.append(client)
-
-        QueueSystem(clientss)
         graficador(resultado_df, estadisticas, num_servers, lambda_value, mu_value, cantidad_clientes)
 
         print('\nFin de programa')

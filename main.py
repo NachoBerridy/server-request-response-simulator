@@ -19,7 +19,6 @@ import seaborn as sns
 import pygame
 
 from functions.simulate import ejecutar_simulacion
-# from functions.simulate_graphic import ejecutar_simulacion
 from functions.parameters_selector import find_good_parameters
 from functions.congruential_generator import GeneradorCongruencialMultiplicativo
 from functions.congruential_mix_generator import GeneradorCongruencialMixto
