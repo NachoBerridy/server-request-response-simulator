@@ -1,27 +1,9 @@
 # Importaciones estándar para funcionalidades básicas y análisis estadístico
-import simpy               # Simulación de procesos y eventos discretos
 import threading          # Soporte para hilos en Python
 import queue              # Implementación de colas
-import time               # Funciones relacionadas con el tiempo
-import numpy as np        # Operaciones numéricas avanzadas
-import scipy.stats as stats   # Funciones estadísticas y matemáticas avanzadas
-import statistics         # Estadísticas descriptivas
-import math               # Funciones matemáticas avanzadas
-from collections import Counter  # Contador de elementos para contar frecuencias
 import pandas as pd       # Análisis y manipulación de datos tabulares
-import matplotlib.pyplot as plt  # Creación de gráficos y visualización de datos
-from tabulate import tabulate  # Formateo de datos tabulares
-import random             # Generación de números aleatorios
-from threading import Semaphore  # Mecanismo de sincronización para controlar el acceso a recursos compartidos
-from xlsxwriter import Workbook  # Creación de archivos Excel
-from sympy import isprime, nextprime, primerange
-import seaborn as sns
-import pygame
 
-from functions.simulate import ejecutar_simulacion
-from functions.parameters_selector import find_good_parameters
-from functions.congruential_generator import GeneradorCongruencialMultiplicativo
-from functions.congruential_mix_generator import GeneradorCongruencialMixto
+from functions.parameters import find_good_parameters
 # from functions.graficador import graficador
 from functions.graficador_dos import graficador
 
@@ -81,11 +63,11 @@ def main():
             if tipo_generador == 'mixto':
                 a, b, m = find_good_parameters(SEMILLA, tipo_generador)
                 df_parameters = pd.DataFrame({'a': [a], 'b': [b], 'm': [m]})
-                generador = GeneradorCongruencialMixto(SEMILLA, a, b, m)
+                generator = Generator(seed=SEMILLA, a=a, b=b, m=m)
             else:
                 a, m = find_good_parameters(SEMILLA, tipo_generador)
                 df_parameters = pd.DataFrame({'a': [a], 'm': [m]})
-                generador = GeneradorCongruencialMultiplicativo(SEMILLA, a, m)
+                generator = Generator(seed=SEMILLA, a=a, b=0, m=m)
             print('\nParámetros seleccionados:')
             print(df_parameters)
         except ValueError as e:
@@ -97,7 +79,8 @@ def main():
         return
 
     print('\nIniciando simulación...')
-    resultado_df, estadisticas = ejecutar_simulacion(generador, LAMBDA, MU, CANTIDAD_CLIENTES, NUM_SERVERS)
+    resultado_df, estadisticas =\
+        simulate(generator, LAMBDA, MU, CANTIDAD_CLIENTES, NUM_SERVERS)
     print("\nResumen de los datos de los clientes:")
     # print(resultado_df.describe())
     print(resultado_df)

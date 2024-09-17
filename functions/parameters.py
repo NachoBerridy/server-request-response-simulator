@@ -78,7 +78,7 @@ def advanced_random_tests(tipo_generador, a, b, m, num_samples=1000):
 
     # Generar una lista de números pseudoaleatorios utilizando el generador
     samples =\
-        [generator.generarNumPseudoaleatorio() for _ in range(num_samples)]
+        [generator.generate_pseudo_random_number() for _ in range(num_samples)]
 
     # Convertir los números generados en frecuencias
     # para la prueba chi-cuadrado

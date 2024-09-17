@@ -3,6 +3,8 @@ import queue
 import time
 import pandas as pd
 
+from classes.number_generators.Generator import Generator 
+
 
 #Variables globales
 cola_clientes = queue.Queue()  # Cola para los clientes
@@ -66,7 +68,7 @@ def servidor(nombre_servidor):
 
 
 
-def ejecutar_simulacion(generador, LAMBDA, MU, CANTIDAD_CLIENTES, NUM_SERVERS):
+def ejecutar_simulacion(generador: Generator, LAMBDA, MU, CANTIDAD_CLIENTES, NUM_SERVERS):
     global tiempo_simulacion
     tiempo_simulacion = 0
 
@@ -77,8 +79,8 @@ def ejecutar_simulacion(generador, LAMBDA, MU, CANTIDAD_CLIENTES, NUM_SERVERS):
     clientes_generados = 0
 
     while clientes_generados < CANTIDAD_CLIENTES:
-        tiempo_demora = generador.exponencial(LAMBDA)  # Genera un tiempo de demora exponencial
-        tiempo_servicio = generador.exponencial(MU)  # Genera un tiempo de servicio exponencial
+        tiempo_demora = generador.exponential(LAMBDA)  # Genera un tiempo de demora exponencial
+        tiempo_servicio = generador.exponential(MU)  # Genera un tiempo de servicio exponencial
 
         time.sleep(tiempo_demora*0.001)  # Retraso entre llegadas
         tiempo_simulacion += tiempo_demora  # Actualiza el tiempo de simulación

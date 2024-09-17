@@ -3,7 +3,7 @@ import math
 
 class Generator:
 
-    def _init_(self, seed, a, m, b=0):
+    def __init__(self, seed, a, m, b=0):
         self.seed = seed  # Valor inicial para generar la secuencia
         self.a = a  # Multiplicador
         self.b = b  # Incremento
