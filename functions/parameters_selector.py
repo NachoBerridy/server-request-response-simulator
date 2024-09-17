@@ -19,37 +19,52 @@ SEMILLA = 42
 """
 
 # Pruebas básicas de aleatoriedad
-def basic_random_tests(generador, num_samples=1000):
+
+
+def basic_random_tests(generator, num_samples=1000):
     '''
-    La idea detrás de esta prueba es que, si el generador produce números verdaderamente aleatorios
-    con una distribución uniforme entre 0 y 1, la media de una muestra grande de estos números debería
-    estar cerca de 0.5. Por lo tanto, este método sirve como una primera verificación rápida de la calidad del generador.
+    La idea detrás de esta prueba es que, si el generador produce números
+    verdaderamente aleatorios con una distribución uniforme entre 0 y 1,
+    la media de una muestra grande de estos números debería estar cerca de 0.5.
+    Por lo tanto, este método sirve como una primera verificación rápida
+    de la calidad del generador.
     '''
-    # Generar una lista de números pseudoaleatorios utilizando el generador dado
-    num_generados = [generador.generarNumPseudoaleatorio() for _ in range(num_samples)]
+    # Generar una lista de números pseudoaleatorios utilizando el generador
+    num_generados =\
+        [generator.generate_pseudo_random_number() for _ in range(num_samples)]
     # Calcular la media de los números generados
     mean = np.mean(num_generados)
     # Calcular la varianza de los números generados
-    #variance = np.var(num_generados)
+    # variance = np.var(num_generados)
     return mean
 
 # Pruebas avanzadas de aleatoriedad
+
+
 def advanced_random_tests(tipo_generador, num_samples=1000, a=None, b=None, m=None):
     """
-    Realiza pruebas de aleatoriedad avanzadas utilizando un generador congruencial mixto o multiplicativo.
+    Realiza pruebas de aleatoriedad avanzadas utilizando un
+    generador congruencial mixto o multiplicativo.
 
     Parámetros:
-    - tipo_generador (str): El tipo de generador a utilizar. Puede ser 'mixto' o 'multiplicativo'.
-    - num_samples (int): El número de muestras pseudoaleatorias a generar. Por defecto es 1000.
-    - a (int): El multiplicador para el generador congruencial mixto. Por defecto es None.
-    - b (int): El incremento para el generador congruencial mixto. Por defecto es None.
-    - m (int): El módulo para el generador congruencial mixto o multiplicativo. Por defecto es None.
+    - tipo_generador (str): El tipo de generador a utilizar.
+    Puede ser 'mixto' o 'multiplicativo'.
+    - num_samples (int): El número de muestras pseudoaleatorias a generar.
+    Por defecto es 1000.
+    - a (int): El multiplicador para el generador congruencial mixto.
+    Por defecto es None.
+    - b (int): El incremento para el generador congruencial mixto.
+    Por defecto es None.
+    - m (int): El módulo para el generador congruencial mixto o multiplicativo.
+    Por defecto es None.
 
     Retorna:
-    - bool: True si todas las pruebas de aleatoriedad son aprobadas, False en caso contrario.
+    - bool: True si todas las pruebas de aleatoriedad son aprobadas, 
+    False en caso contrario.
     """
 
-    # Crear una instancia del generador congruencial mixto o multiplicativo según el tipo especificado
+    # Crear una instancia del generador congruencial mixto o multiplicativo
+    # según el tipo especificado
     if tipo_generador == 'mixto':
         generador = GeneradorCongruencialMixto(SEMILLA, a, b, m)
     elif tipo_generador == 'multiplicativo':
@@ -57,10 +72,13 @@ def advanced_random_tests(tipo_generador, num_samples=1000, a=None, b=None, m=No
     else:
         raise ValueError(f"Tipo de generador '{tipo_generador}' no reconocido.")
 
-    # Generar una lista de números pseudoaleatorios utilizando el generador dado
-    samples = [generador.generarNumPseudoaleatorio() for _ in range(num_samples)]
+    # Generar una lista de números pseudoaleatorios
+    # utilizando el generador dado
+    samples =\
+        [generador.generarNumPseudoaleatorio() for _ in range(num_samples)]
 
-    # Convertir los números generados en frecuencias para la prueba chi-cuadrado
+    # Convertir los números generados en
+    # frecuencias para la prueba chi-cuadrado
     frecuenciasObservadas, _ = np.histogram(samples, bins=10)
     # Realizar la prueba chi-cuadrado y obtener el resultado
     chi2_pass = prueba_chi2(frecuenciasObservadas, alpha=0.05, gradosLibertad=9)
