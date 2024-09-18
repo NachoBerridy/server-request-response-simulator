@@ -13,7 +13,7 @@ from functions.analysis import analyze_simulation
 
 # Definición de los parámetros del sistema
 SEMILLA = 42  # Valor semilla
-LAMBDA = 10/100  # Tasa de llegada de clientes (clientes por unidad de tiempo)
+LAMBDA = 200/100  # Tasa de llegada de clientes (clientes por unidad de tiempo)
 MU = 30/100  # Tasa de servicio (clientes por unidad de tiempo)
 CANTIDAD_CLIENTES = 1000  # Total de clientes
 NUM_SERVERS = 3   # Número de servidores

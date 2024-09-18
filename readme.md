@@ -41,6 +41,8 @@ El prrama generará gráficos con los resultados obtenidos, permitiendo al usuar
 
 ### 1 . Tiempo entre llegadas 1/λ 10ms y tiempo de servicio 1/μ 3.33ms
 
+(Sistema subutilizado)
+
 En este caso podemos observar que los servidores se encuentran desocupados la mayor parte del tiempo, lo que indica que el sistema no está siendo utilizado al máximo de su capacidad.
 
 En este caso el porcentaje de uso de cada servidor fue de 
@@ -53,3 +55,42 @@ El tiempo promedio de espera en la cola fue de 0.0007 ms
 El tiempo promedio del servicio fue de 3.39 ms
 
 ![alt text](images/image.png)
+
+
+### 2 . Tiempo entre llegadas 1/λ 1.33ms y tiempo de servicio 1/μ 3.33ms
+
+(Sistema equilibrado)
+
+En este caso podemos observar que los servidores se encuentran ocupados la mayor parte del tiempo, lo que indica que el sistema está siendo utilizado al máximo de su capacidad. Además se puede observar que los tiempos de espera en la cola no son significativos. Por lo que se puede concluir que el sistema está siendo utilizado de manera eficiente.
+
+En este caso el porcentaje de uso de cada servidor fue de
+* Servidor 1: 77.60%
+* Servidor 2: 77.78%
+* Servidor 3: 79.59%
+
+El tiempo promedio de espera en la cola fue de 3.92 ms
+
+El tiempo promedio del servicio fue de 3.27 ms
+
+![alt text](image.png)
+
+### 3 . Tiempo entre llegadas 1/λ 0.5ms y tiempo de servicio 1/μ 3.33ms
+
+(Sistema sobrecargado)
+
+En este caso podemos observar que los servidores se encuentran ocupados la mayor parte del tiempo, lo que indica que el sistema está siendo utilizado al máximo de su capacidad. Además se puede observar que los tiempos de espera en la cola son significativos. 
+
+En este caso el porcentaje de uso de cada servidor fue de
+
+* Servidor 1: 99.76%
+* Servidor 2: 99.69%
+* Servidor 3: 99.92%
+
+El tiempo promedio de espera en la cola fue de 326.25 ms
+
+El tiempo promedio del servicio fue de 3.44 ms
+
+![alt text](image-1.png)
+
+
+
