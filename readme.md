@@ -2,9 +2,9 @@
 
 Sistema realizado para proyecto final, catedrea de Simulación, Ingeniería en Sistemas, Universidad Tecnológica Nacional, Facultad Regional Mendoza.
 
-## Integrantes
+## Equipo de desarrollo
 
-- [Ignacio Berridy]( )
+- [Ignacio Berridy](https://www.linkedin.com/in/ignacioberridy/)
 - [Ignacio Olcoz]( )
 - [Cristian Rosales]( )
 
