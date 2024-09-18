@@ -1,15 +1,14 @@
 import threading
-import queue
 import time
 
 
 class Server:
-    def __init__(self, nombre_servidor):
+    def __init__(self, nombre_servidor, cola_clientes):
         self.nombre_servidor = nombre_servidor
         self.ultimo_tiempo_salida = 0
         self.tiempo_simulacion = 0
         self.servidor_tiempos = {}
-        self.cola_clientes = queue.Queue()
+        self.cola_clientes = cola_clientes  # Usa la cola global
         self.datos_clientes = []
         self.estadisticas = []
         self.semaforo_cola = threading.Semaphore()
@@ -17,7 +16,9 @@ class Server:
 
     def server(self):
         while True:
+            print("Servidor ", self.nombre_servidor)
             cliente = self.cola_clientes.get()
+            print("Cliente ", cliente)
             if cliente is None:
                 print("Fin ", cliente)
                 self.cola_clientes.task_done()
@@ -33,7 +34,7 @@ class Server:
             inicio = tiempo_inicio
 
             # clientes_en_cola = [c[0] for c in list(self.cola_clientes.queue)]
-            time.sleep(tiempo_servicio*0.001)
+            time.sleep(tiempo_servicio * 0.001)
             duracion_servicio = tiempo_servicio
             tiempo_salida = tiempo_inicio + duracion_servicio
             self.servidor_tiempos[self.nombre_servidor] =\
