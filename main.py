@@ -9,10 +9,11 @@ from functions.graficador import graficador
 
 from functions.simulation import simulate
 from classes.number_generators.Generator import Generator
+from functions.analysis import analyze_simulation
 
 # Definición de los parámetros del sistema
 SEMILLA = 42  # Valor semilla
-LAMBDA = 75/100  # Tasa de llegada de clientes (clientes por unidad de tiempo)
+LAMBDA = 10/100  # Tasa de llegada de clientes (clientes por unidad de tiempo)
 MU = 30/100  # Tasa de servicio (clientes por unidad de tiempo)
 CANTIDAD_CLIENTES = 1000  # Total de clientes
 NUM_SERVERS = 3   # Número de servidores
@@ -93,6 +94,8 @@ def main():
     print(estadisticas.info())
 
     resultado_df['Tiempos entre llegadas'] = estadisticas['Tiempo de llegada']
+
+    print(analyze_simulation(resultado_df))
 
     graficador(
         resultado_df, NUM_SERVERS, LAMBDA, MU, CANTIDAD_CLIENTES)
